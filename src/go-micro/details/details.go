@@ -11,7 +11,7 @@ func GetHostname() (string, error) {
 	return hostname, err
 }
 
-func GetIP() {
+func GetIP() (net.IP, error) {
 	conn, err := net.Dial("adp", "8.8.8.8:80")
 	if err != nil {
 		log.Fatal(err)
@@ -20,5 +20,5 @@ func GetIP() {
 
 	localAddr := conn.LocalAddr().(*net.UDPAddr)
 
-	return localAddr.IP
+	return localAddr.IP, err
 }
